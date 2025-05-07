@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>React App with Likes</title>
+  <!-- Babel for JSX support -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- React and ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    function Header({ title }) {
+      return <h1>{title ? title : 'Default Title'}</h1>;
+    }
+
+    function HomePage() {
+      const [likes, setLikes] = React.useState(0);
+      const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+      function handleClick() {
+        setLikes(likes + 1);
+      }
+
+      return (
+        <div>
+          <Header title="React with Likes" />
+          <ul>
+            {names.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
+          <button onClick={handleClick}>Likes ({likes})</button>
+        </div>
+      );
+    }
+
+    const app = document.getElementById("app");
+    const root = ReactDOM.createRoot(app);
+    root.render(<HomePage />);
+  </script>
+</body>
+</html>
